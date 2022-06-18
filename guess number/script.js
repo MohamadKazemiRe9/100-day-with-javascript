@@ -1,41 +1,39 @@
 // Loops
 // guess number
 
-let number = Math.floor(Math.random()*10) + 1;
+let number = Math.floor((Math.random()*10) + 1);
 let isEnd = false;
 let guessCounts = 0;
-let maxGuess = 5;
-let diffrence;
+const maxGuess = 5;
 let guessNumber;
 
 do{
-    guessNumber = prompt("please enter a number between 1 to 10");
-    guessNumber = Number(guessNumber);
-    if(isNaN(guessNumber)){
-        console.log("wrong number");
+    guessNumber = Number(prompt("Please enter a number between 1 - 10"));
+    guessCounts++;
+    if(guessNumber < 1 || guessNumber > 10 || isNaN(guessNumber)){
+        console.log("Wrong input!");
         isEnd = true;
     }
-    diffrence = guessNumber - number; 
     // game rules
-    if (diffrence > 0){
-        if(Math.abs(diffrence) > 3){
-            console.log("too high");
-        }else{
-            console.log("high");
-        }
-        guessCounts++;
-    }else if(diffrence < 0){
+    let diffrence = number - guessNumber;
+    if(diffrence > 0){
         if(Math.abs(diffrence) > 3){
             console.log("too low");
         }else{
             console.log("low");
         }
-        guessCounts++;
+        
+    }else if(diffrence < 0){
+        // diffrence > 3 =>  too high ---- < 3 => high
+        if(Math.abs(diffrence) > 3){
+            console.log("too high");
+        }else{
+            console.log("high");
+        }
     }else{
-        console.log(`correct guess in ${guessCounts} gueses! answer is ${number}`);
+        console.log(`You won in ${guessCounts} guesses! answer is ${number}`);
         isEnd = true;
     }
-    --maxGuess;
-}while(!isEnd && maxGuess >= 0)
+}while(!isEnd && guessCounts < maxGuess)
 
-console.log("Game over!");
+console.log("Game Over");
