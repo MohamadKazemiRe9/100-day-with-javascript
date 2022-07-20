@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <button class="btn-start">
+        Start
+    </button>
+
+    <div class="gameboard">
+        <div class="btn-container">
+            <div class="game-btn btn1">
+                <img src="rock/paper.png" class="img" alt="">
+            </div>
+            <div class="game-btn btn2">
+                <img src="rock/rock.png" class="img" alt="">
+            </div>
+            <div class="game-btn btn3">
+                <img src="rock/scissors.png" class="img" alt="">
+            </div>
+        </div>
+
+        <h2 id="winner">Winner : <span>---</span></h2>
+
+        <div class="scoreboard">
+            <h3>Scores:</h3>
+            <div class="scores">
+                <div class="player-score">
+                    <h4>Player Score</h4>
+                    <div id="player-score-number">0</div>
+                </div>
+                <div class="computer-score">
+                    <h4>CPU Score</h4>
+                    <div id="computer-score-number">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="test.js"></script>
+</body>
+</html>

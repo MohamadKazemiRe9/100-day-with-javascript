@@ -1,0 +1,135 @@
+body{
+    background-color: rgb(43, 43, 43);
+}
+
+.btn-start{
+    height: 8em;
+    width: 8em;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(0, 149, 255);
+    color: aliceblue;
+    font-size: 22px;
+    font-weight: bolder;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: btn-start 2s infinite;
+    animation-timing-function: linear;
+    cursor: pointer;
+}
+
+@keyframes btn-start{
+    from{
+        background-color: rgb(0, 149, 255);
+    }
+    to{
+        background-color: rgb(0, 0, 255);
+        height: 6em;
+        width: 6em;
+    }
+}
+
+
+.gameboard{
+    background-color: #FFEA00;
+    width: 70%;
+    height: 600px;
+    position: relative;
+    left: 15%;
+    top: 10em;
+    border-radius: 10px;
+    border: 3px solid #fff;
+    display: none;
+}
+
+.game-btn{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.game-btn > img{
+    width: 200px;
+    height: 200px;
+}
+
+@media screen and (max-width:450px){
+    .game-btn{
+        margin-top: 5em;
+    }
+    .game-btn > img{
+        width: 70px;
+        height: 70px;
+    }
+}
+@media screen and (max-width:680px) and (min-width:450px){
+    .game-btn{
+        margin-top: 2em;
+    }
+    .game-btn > img{
+        width: 100px;
+        height: 100px;
+    }
+}
+@media screen and (min-width:680px) and (max-width:1000px) {
+    .game-btn > img{
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.img:hover{
+    box-shadow: 0 0 5px 5px #fff;
+    border-radius: 50%;
+}
+
+.btn1{
+    left: 2%;
+}
+.btn2{
+    left: 35%;
+}
+.btn3{
+    left: 70%;
+}
+
+.scoreboard{
+    display: grid;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    grid-template-rows: auto auto;
+}
+
+.scores{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 5em; 
+}
+
+.active-player{
+    box-shadow: 0 0 5px 5px rgb(1, 179, 1);
+    border-radius: 50%;
+}
+
+.active-cpu{
+    box-shadow: 0 0 5px 5px rgb(191, 0, 0);
+    border-radius: 50%;
+}
+
+#winner{
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+}
+
+.active-draw{
+    box-shadow: 0 0 5px 5px rgb(0, 60, 191);
+    border-radius: 50%;
+}
