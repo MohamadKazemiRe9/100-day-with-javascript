@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- form task -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <h1 class="text-center my-3">Todo App</h1>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="add-task-title" placeholder="Add title">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col my-3">
+                        <textarea class="form-control" id="add-task-decription" placeholder="add desciption" rows="3"
+                            style="resize: none;"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="col-4" id="btn-container">
+                            <button class="btn btn-primary" id="btn-add">ADD <i
+                                    class="bi bi-plus-circle ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end form task -->
+
+        <div class="row mt-5">
+            <div class="col justify-content-center text-center text-danger">
+                <h3>Not Complated Tasks</h3>
+            </div>
+            <hr>
+
+        </div>
+        <!-- start NOT COMPLATED task -->
+        <div class="row mt-3" id="uncompleted-tasks-container">
+            <!-- strat task -->
+            <div class="col-12 col-sm-6 mb-3 justify-content-start justify-content-lg-center d-flex md-mx-auto">
+                <div class="card">
+                    <div class="card-body shadow">
+                        <h6 class="card-subtitle mb-2 text-muted">Title</h6>
+                        <p class="card-text">Some quick example text to build on the card title and!</p>
+                        <a href="#" class="card-link text-success done-task">
+                            <i class="bi bi-check-square-fill"></i>
+                        </a>
+                        <a href="#" class="card-link text-danger delete-task">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                        <a href="#" class="card-link text-primary edit-task">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- end task -->
+        </div>
+        <!-- end not complated task -->
+
+        <div class="row mt-5" >
+            <div class="col justify-content-center text-center text-success">
+                <h3>Complated Tasks</h3>
+            </div>
+            <hr>
+        </div>
+
+        <!-- start COMPLATED task -->
+        <div class="row mt-3" id="completed-tasks-container">
+            <!-- strat task -->
+            <div class="col-12 col-sm-6 mb-3 justify-content-start justify-content-lg-center d-flex md-mx-auto card-container">
+                <div class="card">
+                    <div class="card-body shadow">
+                        <h6 class="card-subtitle mb-2 text-muted">Title</h6>
+                        <p class="card-text text-muted ">Some quick example text to build on the card title and!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end task -->
+        </div>
+        <!-- end complated task -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
