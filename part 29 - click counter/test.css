@@ -1,0 +1,57 @@
+#container{
+  width: 400px;
+  height: 200px;
+  background-color: #F3F3F3;
+  border:8px solid #E6E6E6;
+  border-radius: 8px;
+  margin:2em;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#container:active{
+  background-color: #c2c2c2;
+}
+
+#score-board{
+  width: 400px;
+  display: grid;
+  justify-content: center;
+  margin-bottom: -3em;
+  margin-left: 2em;
+}
+
+#timer{
+  width: 400px;
+  margin-top: 2em;
+  margin-left: 2em;
+
+  display: none;
+}
+
+#record{
+  margin-left: 4em;
+  display: none;
+  margin-top: 2em;
+}
+
+#reset{
+  background-color: rgb(36, 36, 206);
+  color: #F3F3F3;
+  border: none;
+  padding: 0.8em;
+  border-radius: 5px;
+  margin-left: 6em;
+  cursor: pointer;
+  box-shadow: 0 0 1px 2px #a3a3a3;
+  transition: all 0.2s;
+  display: none;
+}
+
+#reset:active{
+  background-color: rgb(50, 50, 250);
+  box-shadow: 0 0 4px 4px #a3a3a3;
+}
