@@ -1,0 +1,135 @@
+.container{
+  display: grid;
+  justify-content: center;
+  background-color: #F6F6F7;
+  margin-top: 5em;
+  padding-top: 2em;
+}
+.typewriter{
+  color: aliceblue;
+  height: 4em;
+  display: grid;
+  align-items: center;
+  background-color: #333333;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 4px #999;
+  padding: 0 1em;
+}
+.typewriter h1 {
+  overflow: hidden;
+  border-right: .15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .7s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+
+
+#score{
+  height: 100px;
+  margin-top: 2em;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  width: 60%;
+  margin:3em auto;
+}
+
+#timer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 70px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 4px solid #b3b3b3;
+  font-size: 2em;
+}
+
+#record, #info {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#record-word, #record-characters{
+  height: 70px;
+  width: 70px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  border-radius: 10%;
+  box-shadow: 0 0 2px 2px #a9a9a9;
+}
+
+#typing-box{
+  margin: 2em 0;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 50% 50%;
+  overflow: hidden;
+  height: 100px;
+}
+
+#typing-box > input{
+  border: none;
+  /* height: 6em; */
+  /* border-radius: 5px; */
+  /* box-shadow: 2px 2px 3px 3px #dbdbdb; */
+  outline: none;
+  font-size: 3em;
+  padding: 0.3em 0;
+  /* direction: rtl; */
+  text-align: right
+
+}
+
+#words{
+  display: grid;
+  grid-auto-flow: column; 
+  grid-gap: 5px;
+  width: 100%;
+  height: 10vh;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  font-size: 3em;
+  overflow: hidden;
+}
+
+.word{
+  margin-right: 0.2em;
+  display: inline-block;
+}
+
+@media screen and (max-width:600px) {
+  #typing-box{
+    font-size: 0.5em;
+  }
+  .word{
+    margin-bottom: 1em;
+  }
+}
+@media screen and (max-width:900px) and (min-width:601px) {
+  #typing-box{
+    font-size: 0.7em;
+  }
+}
