@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="form-container">
+        <h3>فرم ثبت نام</h3>
+        <form action="">
+            <input type="email" id="email-form-register" placeholder="آدرس ایمیل خود را وارد نمایید">
+            <div class="register-form-password-container">
+                <input type="password" class="register-form-password" placeholder="رمز عبور خود را وارد نمایید">
+                <span class="show-password">نمایش</span>
+            </div>
+            <div class="register-form-password-container">
+                <input type="password" class="register-form-password" placeholder="رمز عبور خود را مجددا وارد نمایید">
+                <span class="show-password">نمایش</span>
+            </div>
+            
+            <div class="security-level-container">
+                <div class="security-level"></div>
+                <div id="password-status">
+                </div>
+            </div>
+            
+            <button type="submit" id="btn-submit">ثبت نام</button>
+        </form>
+        <div class="register-form-links">
+            <div class="register-form-link-login">
+                اگر قبلا ثبت نام کرده اید <a href="#">اینجا</a> را کلیک کنید
+            </div>
+            <div class="register-form-link-forget">
+                اگر رمز عبور خود را فراموش کرده اید ، <a href="#">اینجا</a> را کلیک کنید
+            </div>
+        </div>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>  

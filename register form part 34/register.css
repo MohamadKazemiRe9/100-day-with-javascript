@@ -1,0 +1,138 @@
+.form-container{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5em;
+    box-shadow: 0 0 2px 2px #a9a9a9;
+    padding: 1em 2em;
+    border-radius: 5px;
+    position: relative;
+}
+.form-container > h3{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+} 
+.form-container > form{
+    display: grid;
+    grid-template-columns: auto;
+    margin-top: 4em;
+}
+.form-container > form > input{
+    height: 3.5em;
+    border: none;
+    outline: none;
+    margin-bottom: 1em;
+    box-shadow: 0 0 2px 2px #a9a9a9;
+    border-radius: 5px;
+    padding: 0 1em;
+}
+
+.form-container > form > button{
+    border: none;
+    background-color: rgb(23, 23, 253);
+    height: 2em;
+    color: aliceblue;
+    font-size: 1.2em;
+    border-radius: 3px;
+    font-weight: bolder;
+    box-shadow: 0 0 2px 2px #a9a9a9;
+    transition: box-shadow 0.2s; 
+    cursor: pointer;
+}
+.form-container > form > button:hover{
+    box-shadow: 0 0 2px 4px #a9a9a9;
+    background-color: rgb(0, 0, 148);
+}
+
+.register-form-links{
+    direction: rtl;
+    margin-top: 1em;
+}
+.register-form-links > div{
+    margin: 0.5em 0;
+}
+.register-form-links > div > a{
+    text-decoration: none;
+    color: rgb(30, 30, 215);
+    font-weight: bolder;
+}
+
+.register-form-password{
+    width: 80%;
+}
+.register-form-password-container{
+    box-shadow: 0 0 2px 2px #a9a9a9;
+    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 80% auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.register-form-password-container>input{
+    /* height: 2em; */
+    border: none;
+    outline: none;
+    margin-bottom: 1em;
+    height: 80%;
+    /* background-color: aquamarine; */
+    margin-top: 1em;
+}
+.register-form-password-container>button{
+    border: none;
+    background-color: inherit;
+    /* background-color: yellow; */
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.security-level-container{
+    height: 5px;
+    width: 100%;
+    background-color: #a9a9a9;
+    margin-bottom: 2.2em;
+    position: relative;
+    
+}
+.security-level{
+    /* width: 80%; */
+    height: 100%;
+    transition: width 0.3s;
+    /* background-color: green; */
+}
+
+#password-status{
+    padding-top: 0.4em;
+    right: 0.4em;
+    position: absolute;
+}
+
+.show-password{
+    cursor: pointer;
+}
+
+@media screen and (max-width:400px) {
+    .form-container{
+        width: 80%;
+        margin-left: 1%;
+    }
+}
+@media screen and (max-width:600px) and (min-width:401px) {
+    .form-container{
+        width: 80%;
+        margin-left: 2%;
+    }
+}
+@media screen and (max-width:900px) and (min-width:601px) {
+    .form-container{
+        width: 80%;
+        margin-left: 5%;
+    }
+}
+@media screen and (max-width:1200px) and (min-width:901px) {
+    .form-container{
+        width: 40%;
+        margin-left: 30%;
+    }
+}
