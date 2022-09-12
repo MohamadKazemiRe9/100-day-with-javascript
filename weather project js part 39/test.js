@@ -4,7 +4,7 @@ const temp = document.getElementById("temp");
 const cool = document.getElementById("cool");
 const warm = document.getElementById("warm");
 const btnReset = document.getElementById("btn-reset");
-const key = "109d424b54ae460e540bad9953047757";
+
 
 console.log(temp.innerText)
 
