@@ -1,0 +1,70 @@
+#test1, #test2{
+    width: 50px;
+    height: 50px;
+    margin: 1em;
+}
+
+#test1{
+    background-color: rgb(0, 76, 255);
+}
+
+#test2{
+    background-color: rgb(255, 0, 166);
+    /* transition: all 1s cubic-bezier(0.52, 0.82, 0.865, 0.15); */
+    transition: all 1s linear;
+}
+
+/* #box-cintainer:hover #test2{
+    transform: translateX(500%);
+} */
+
+#btn-start, #btn-copy{
+    width: 70px;
+    height: 40px;
+    background-color: bisque;
+}
+
+#btn-start:active, #btn-copy:active{
+    background-color: rgb(246, 175, 113);
+}
+
+.input-container{
+    width: 100px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin: 1em 0;
+}
+
+.input-container >input{
+    width: 50px;
+    margin-right: 0.4em;
+    box-shadow: 1px 1px 5px 1px rgb(235, 235, 235);
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.range-input{
+    font-size: 1.5em;
+}
+
+.select-for-another{
+    margin: 1em 0;
+}
+
+.select-for-another > div{
+    margin: 1em 0;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.select-for-another>button{
+    height: 100px;
+    width: 100px;
+}
+
+.btn-adctive{
+    background-color: rgb(0, 162, 255);
+    color: azure;
+}
