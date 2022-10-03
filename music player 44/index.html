@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./animate.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="player-container">
+        <div id="player-show">
+            <img src="./assets/img2.jpg" alt="">
+            <audio id="audio-scource" src="./assets/Island Dream - Chris Haugen.mp3"></audio>
+        </div>
+        <div id="player-time">
+            <div id="media-time-past">
+                <span id="media-time-past-minutes">00</span>:<span id="media-time-past-seconds">00</span></div>
+            <div id="media-progress-container">
+                <div id="media-progress"></div>
+            </div>
+            <div id="media-time-total">
+                <span id="media-time-total-minutes"></span>:<span id="media-time-total-seconds"></span></div>
+        </div>
+        <div id="player-control">
+            <div id="media-stop">
+                <img src="./assets/forward.png" alt="">
+            </div>
+            <div id="main">
+                <img src="./assets/backward.png" class="animate__animated" alt="" id="media-backward-main">
+                <img id="btn-play" src="./assets/play.png" class="animate__animated" alt="">
+                <img src="./assets/forward.png" alt="" class="animate__animated" id="media-forward-main">
+            </div>
+            <div id="media-repeat">
+                <img src="./assets/repeat.png" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
