@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./animate.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="video-palyer-container">
+        <video src="./assets/test.mp4" id="video-scource">
+            <track kind="subtitles" src="./assets/subtitle.vtt" srclang="en" />
+        </video>
+        <!-- just for frames -->
+        
+        <video src="./assets/test240.mp4" id="video-background"></video>
+
+
+        <div id="video-player-control-container">
+
+            <!-- start progress bar -->
+            <div id="video-player-progress-bar-container">
+                <div id="video-player-progress-bar"></div>
+            </div>
+            <!-- end progress bar -->
+
+            <!-- start video base control -->
+            <div id="video-control-base">
+                <div id="video-control-left">
+                    <!-- play btn -->
+                    <div id="btn-play">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <!-- play next -->
+                    <div id="next-btn">
+                        <i class="fas fa-step-forward"></i>
+                    </div>
+                    <!-- volume -->
+                    <div id="volume-container">
+                        <div id="volume-btn">
+                            <i class="fas fa-volume-down"></i>
+                        </div>
+                        <!-- <div id="volume-progress">
+                            <div id="volume-progress-bar"></div>
+                        </div> -->
+                        <input type="range" value="40" max="100" min="0" id="range-volume" class="animate__animated">
+                    </div>
+
+                    <!-- start video time -->
+                    <div id="video-player-time-container">
+                        <div id="video-time-passed">
+                            <span id="video-time-passed-minutes">0</span> :
+                            <span id="video-time-passed-seconds">00</span> /
+                        </div>
+                        <div id="video-time-total">
+                            <span id="video-time-total-minutes"></span> :
+                            <span id="video-time-total-seconds"></span>
+                        </div>
+                    </div>
+                    <!-- end video time -->
+                </div>
+                <!-- end left control -->
+
+                <div class="space"></div>
+
+                <div id="video-control-right">
+                    <div id="setting-btn">
+                        <i class="fa fa-cog"></i>
+                    </div>
+                    <div id="video-player-btn-caption">
+                        <i class="fa fa-closed-captioning"></i>
+                    </div>
+                    <div id="video-player-btn-fullscreen">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- end video base control -->
+
+        </div>
+        <!-- end control -->
+
+        <!-- start settings box -->
+        <div id="video-player-settings-box-container">
+
+            <div class="video-player-settings-row">
+                <div id="video-player-settings-box-icons">
+                    <i class="fa fa-closed-captioning"> Subtitles</i>
+                </div>
+
+                <div class="video-player-settings-box-desription">
+                    <span>Off <i class="fas fa-angle-right"></i></span>
+                </div>
+            </div>
+
+            <div class="video-player-settings-row">
+                <div id="video-player-settings-box-icons">
+                    <i class="fa fa-sliders-h"> Quality</i>
+                </div>
+
+                <div class="video-player-settings-box-desription">
+                    <span>1080p <i class="fas fa-angle-right"></i></span>
+                </div>
+            </div>
+        </div>
+        <!-- end settings box -->
+
+        <!-- start qualities box -->
+        <div id="video-player-settings-qualities-container">
+            <div id="video-player-settings-qualities-head">
+                <i class="fas fa-angle-left"> Quality</i>
+            </div>
+            <div id="video-player-settings-qualities-body">
+
+                <div class="video-player-settings-qualities-body-row">
+                    <div class="video-player-settings-qualities-body-row-items">
+                        1080p
+                    </div>
+                </div>
+                <div class="video-player-settings-qualities-body-row">
+                    <div class="video-player-settings-qualities-body-row-items">
+                        720p <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                <div class="video-player-settings-qualities-body-row">
+                    <div class="video-player-settings-qualities-body-row-items">
+                        480p
+                    </div>
+                </div>
+                <div class="video-player-settings-qualities-body-row">
+                    <div class="video-player-settings-qualities-body-row-items">
+                        240p
+                    </div>
+                </div>
+                <div class="video-player-settings-qualities-body-row">
+                    <div class="video-player-settings-qualities-body-row-items">
+                        Auto
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end qualities box -->
+
+
+
+        <!-- start seek video -->
+
+        <!-- seek forward video -->
+        <div class="video-forward-animate animate__animated">
+            <div id="video-forward-icon">
+                <i class="fas fa-forward"></i>
+            </div>
+            <div id="video-forward-text">
+                15 seconds
+            </div>
+        </div>
+
+        <!-- end seek video -->
+
+        <!-- seek forward video -->
+        <div class="video-backward-animate animate__animated">
+            <div id="video-backward-icon">
+                <i class="fas fa-backward"></i>
+            </div>
+            <div id="video-backward-text">
+                15 seconds
+            </div>
+        </div>
+
+        <!-- end seek video -->
+
+        <!-- start pause and ply -->
+        <div id="video-player-pause-animate">
+            <div id="video-pause-icon">
+                <i class="fas fa-play"></i>
+            </div>
+        </div>
+        <!-- end pause and ply -->
+
+        <!-- start volume -->
+        <div id="volume-board-number">
+            40%
+        </div>
+        <!-- end volume -->
+
+        <div id="cover-all-video">
+
+        </div>
+
+    </div>
+
+    <canvas id="canvas" style="overflow:auto"></canvas>
+
+
+    <script src="./fontawesom.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
