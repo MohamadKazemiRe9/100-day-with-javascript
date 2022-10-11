@@ -1,133 +1,165 @@
 const media = document.getElementById("audio-scource");
-const mediaTimePastMinutes = document.getElementById("media-time-past-minutes");
-const mediaTimePastSeconds = document.getElementById("media-time-past-seconds");
-const mediaTimeTotalMinutes = document.getElementById("media-time-total-minutes");
-const mediaTimeTotalSeconds = document.getElementById("media-time-total-seconds");
-const mediaProgress = document.getElementById("media-progress");
-const mediaBackwardBtn = document.getElementById("media-backward-main");
-const mediaForwardBtn = document.getElementById("media-forward-main");
-const mediaRepeatBtn = document.getElementById("media-repeat");
-const mediaStopBtn = document.getElementById("media-stop");
-
+// play button
 const btnPlay = document.getElementById("btn-play");
+// forward and backward
+const btnForward = document.getElementById("media-forward-main");
+const btnBackward = document.getElementById("media-backward-main");
+// total time
+const timeTotalMinutes = document.getElementById("media-time-total-minutes");
+const timeTotalSeconds = document.getElementById("media-time-total-seconds");
+// time passed
+const timePassedMinutes = document.getElementById("media-time-past-minutes");
+const timePassedSeconds = document.getElementById("media-time-past-seconds");
+// progress bar
+const progressBarContainer = document.getElementById("media-progress-container");
+const progressBar = document.getElementById("media-progress");
+// stop
+const stopBtn = document.getElementById("media-stop");
+// loop
+const btnLoop = document.querySelector("#media-repeat > img");
+// music select
+const musicSelect = document.getElementById("music-select");
+const musicSelectImage = document.getElementById("music-select-image");
 
-window.onload = function(){
-    setTimeout(() => {
-        let seconds;
-        let minutes;
-        seconds = secondToTime(media.duration)[0];
-        minutes = secondToTime(media.duration)[1];
-        mediaTimeTotalSeconds.innerText = seconds;
-        mediaTimeTotalMinutes.innerText = minutes;
-    }, 500);
-}
 
-btnPlay.addEventListener("click", function(){
-    if(media.paused){
-        media.play();
-        this.setAttribute("src", "./assets/pause.png");
-        this.classList.add("animate__flipInY");
-        setInterval(() => {
-            timePass(media.currentTime);
-            mediaProgressBar((media.currentTime / media.duration)*100);
-        }, 1000);
-        setTimeout(()=>{
-            this.classList.remove("animate__flipInY");
-        }, 500);
-    }else{
-        media.pause();
-        this.setAttribute("src", "./assets/play.png");
-        this.classList.add("animate__flipInY");
-        setTimeout(()=>{
-            this.classList.remove("animate__flipInY");
-        }, 500);
+
+btnPlay.addEventListener("click", function () {
+    if (media.paused) {
+        playingMusic();
+    } else {
+        pauseMusic();
     }
-});
 
-mediaBackwardBtn.addEventListener("click", function(){
-    changeCurrent(-1);
-    this.classList.add("animate__rubberBand");
-    console.log(this.classList)
-    setTimeout(()=>{
-        this.classList.remove("animate__rubberBand");
-    }, 500);
-});
-
-mediaForwardBtn.addEventListener("click", function(){
-    changeCurrent(+1);
-    this.classList.add("animate__rubberBand");
-    console.log(this.classList)
-    setTimeout(()=>{
-        this.classList.remove("animate__rubberBand");
-    }, 500);
 })
 
-function changeCurrent(side){
-    if (side < 0){
-        if (media.currentTime < side*15){
-            media.currentTime = 0;
-        }else{
-            media.currentTime -= 10;
+let callTimer;
+
+function playingMusic() {
+    media.play();
+    btnPlay.setAttribute("src", "./assets/pause.png");
+    btnPlay.classList.add("animate__flipInY");
+    setTimeout(() => {
+        btnPlay.classList.remove("animate__flipInY");
+    }, 500);
+    callTimer = setInterval(()=>{
+        timePassed();
+        progressWidth((media.currentTime / media.duration)*100);
+        if(media.ended){
+            mediaStop();
         }
-    }
-    else{
-        if(media.duration < media.currentTime + side*10){
-            media.currentTime = media.duration;
-        }else{
-            media.currentTime += 10;
-        }
-    }
+    }, 50);
 }
 
-
-function mediaProgressBar(width){
-    mediaProgress.style.width = `${width}%`;
+function pauseMusic() {
+    media.pause();
+    btnPlay.setAttribute("src", "./assets/play.png");
+    btnPlay.classList.add("animate__flipInY");
+    setTimeout(() => {
+        btnPlay.classList.remove("animate__flipInY");
+    }, 500);
+    clearInterval(callTimer);
 }
 
-function timePass(){
-        let seconds;
-        let minutes;
-        seconds = secondToTime(media.currentTime)[0];
-        minutes = secondToTime(media.currentTime)[1];
-        mediaTimePastSeconds.innerText = seconds;
-        mediaTimePastMinutes.innerText = minutes;
-}
-
-function secondToTime(seconds){
-    let sec = Number(seconds);
-
-    let min = parseInt(sec / 60);
-    let resultSeconds = parseInt(sec % 60);
-    if (resultSeconds < 10){
-        resultSeconds = `0${resultSeconds}`;
-    }
-    if (min < 10){
-        min = `0${min}`;
-    }
-    return [resultSeconds, min];
-}
-
-mediaRepeatBtn.addEventListener("click", function(){
-    const img = this.querySelector("img");
-    if(!media.loop){
-        img.classList.add("media-active");
-        media.loop = true;
-    }else{
-        img.classList.remove("media-active");
-        media.loop = false;
-    }
+// foward
+btnForward.addEventListener("click", function(){
+    media.currentTime += 10;
+    timePassed();
+    progressWidth((media.currentTime / media.duration)*100);
 });
 
+btnBackward.addEventListener("click", function(){
+    media.currentTime -= 10;
+    timePassed();
+    progressWidth((media.currentTime / media.duration)*100);
+});
 
-mediaStopBtn.addEventListener("click", ()=>{
+// total time
+window.onload = function(){
+    musicOnload();
+}
+
+function musicOnload(){
+    setTimeout(()=>{
+        let result = converSecondsToTime(Math.round(media.duration));
+        let min = result[0];
+        let sec = result[1];
+        timeTotalMinutes.innerText = min;
+        timeTotalSeconds.innerText = sec;
+    }, 200);
+}
+
+function converSecondsToTime(sec){
+    let minutes = timeFixed(parseInt(sec / 60));
+    let seconds = timeFixed(sec % 60);
+    return [minutes, seconds];
+}
+
+function timeFixed(num){
+    if(num < 10){
+        return `0${num}`
+    }
+    return num
+}
+
+function timePassed(){
+    let result = converSecondsToTime(Math.round(media.currentTime));
+    timePassedMinutes.innerText = result[0];
+    timePassedSeconds.innerText = result[1];
+}
+
+
+function progressWidth(w){
+    progressBar.style.width = `${w}%`;
+}
+
+stopBtn.addEventListener("click", function(){
     mediaStop();
 });
 
 function mediaStop(){
-    mediaTimePastMinutes.innerText = "00";
-    mediaTimePastSeconds.innerText = "00";
-    mediaProgress.style.width = 0;
-    media.pause();
+    pauseMusic();
     media.currentTime = 0;
-    btnPlay.setAttribute("src","./assets/play.png")
+    timePassed();
+    progressWidth(0);
 }
+
+
+let isActiveLoop = false;
+
+btnLoop.addEventListener("click", function(){
+    if(!isActiveLoop){
+        this.classList.add("media-active");
+        isActiveLoop = true;
+        media.loop = true;
+    }else{
+        this.classList.remove("media-active");
+        isActiveLoop = false;
+        media.loop = false;
+    }
+})
+
+// progress bar container
+progressBarContainer.addEventListener("click", function(e){
+    let clickPosition = e.clientX;
+    let distanceFromLeft = this.getBoundingClientRect().left;
+    let clickPostionContainer = clickPosition - distanceFromLeft;
+    let progressContainerWidth = this.offsetWidth;
+    let calcuteProgressClicked = clickPostionContainer / progressContainerWidth;
+    progressWidth(calcuteProgressClicked * 100);
+    media.currentTime = (calcuteProgressClicked * media.duration);
+    timePassed();
+});
+
+// select music
+musicSelectImage.addEventListener("click", ()=>{
+    musicSelect.click();
+});
+
+musicSelect.addEventListener("change", function(){
+    mediaStop();
+    let file = this.files[0];
+    let URL = window.URL || window.webkitURL;
+    let fileURL = URL.createObjectURL(file);
+    media.setAttribute("src", fileURL);
+    musicOnload();
+});
