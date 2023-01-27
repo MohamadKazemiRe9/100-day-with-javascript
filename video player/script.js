@@ -17,6 +17,10 @@ const videoTimeTotalSecond = document.getElementById("video-time-total-seconds")
 const videoTimePassedMinute = document.getElementById("video-time-passed-minutes");
 const videoTimePassedSecond = document.getElementById("video-time-passed-seconds");
 
+// canavs
+const canavs = document.getElementById("canvas");
+const videoBackground = document.getElementById("video-background");
+
 
 videoPlayBtn.addEventListener("click", function(){
     videoPlay();
@@ -57,10 +61,13 @@ function videoPlay(){
 video.onplay = function(){
     setInterval(()=>{
         let barWith = video.currentTime/video.duration;
-        videoProgressBar.style.width = `${barWith*100}%`;
+        progressBarStyleWidth(barWith);
     }, 50);
 }
 
+function progressBarStyleWidth(w){
+    videoProgressBar.style.width = `${w*100}%`;
+}
 
 videoProgressBarContainer.addEventListener("mousemove", function(e){
     this.style.height = "0.6em";
@@ -70,12 +77,24 @@ videoProgressBarContainer.addEventListener("mousemove", function(e){
     let progressBarWidth = this.offsetWidth;
     let caclulateProgress = (mousePointerFromLeft / progressBarWidth)*100;
     this.style.background = `linear-gradient( to right, #fff 0%, #fff ${caclulateProgress}%, rgb(135, 135, 135) ${caclulateProgress}%, rgb(135, 135, 135) 100%)`;
+    canavs.style.display = "block";
+    canvasDrawImage((caclulateProgress / 100) * video.duration);
 });
 
 videoProgressBarContainer.addEventListener("mouseleave", function(){
     this.style.height = "0.3em";
     this.style.background = "";
+    canavs.style.display = "none";
 });
+
+// preview
+function canvasDrawImage(videoSecond){
+    videoBackground.currentTime = videoSecond;
+    canavs.width = videoBackground.videoWidth;
+    canavs.height = videoBackground.videoHeight;
+    canavs.getContext("2d").drawImage(videoBackground, 0, 0, videoBackground.videoWidth, videoBackground.videoHeight);
+}
+
 
 videoProgressBarContainer.addEventListener("click", function(e){
     let mousePositionX = e.clientX;
@@ -85,6 +104,7 @@ videoProgressBarContainer.addEventListener("click", function(e){
     let caclulateProgress = (mousePointerFromLeft / progressBarWidth);
     video.currentTime = video.duration * caclulateProgress;
     videoProgressBar.style.width = `${caclulateProgress*100}%`;
+    timePassed();
 });
 
 function convertVideoTimeFormat(seconds){
@@ -160,3 +180,115 @@ volumeIcon.addEventListener("click", function(){
         setVolumeIcon();
     }
 });
+
+// keys
+window.addEventListener("keydown", function(e){
+    // console.log(e.key)
+    switch(e.key){
+        case "ArrowRight":
+            video.currentTime += 5;
+            timePassed();
+            progressBarStyleWidth(video.currentTime / video.duration);
+            break;
+        case "ArrowLeft":
+            video.currentTime -= 5;
+            timePassed();
+            progressBarStyleWidth(video.currentTime / video.duration);
+            break;
+        case "ArrowUp":
+            if(video.volume < 0.9){
+                let vol = video.volume + 0.1;
+                vol.toFixed(2);
+                video.volume = vol;
+                setVolumeIcon();
+                volumeRange.value = Number(volumeRange.value) + 10;
+                console.log(volumeRange.value)
+                volumeRange.style.background = `linear-gradient(to right, #e3e3e3 0%, #e3e3e3 ${volumeRange.value}%, rgb(135, 135, 135) ${volumeRange.value}%, rgb(135, 135, 135) 100%)`;
+            }else{
+                video.volume = 1;
+                setVolumeIcon();
+                volumeRange.value = 100;
+                volumeRange.style.background = `linear-gradient(to right, #e3e3e3 0%, #e3e3e3 ${volumeRange.value}%, rgb(135, 135, 135) ${volumeRange.value}%, rgb(135, 135, 135) 100%)`;
+            }
+            break;
+        case "ArrowDown":
+            if(video.volume > 0.1){
+                let vol = video.volume - 0.1;
+                vol.toFixed(2);
+                video.volume = vol;
+                setVolumeIcon();
+                volumeRange.value -= 10;
+                volumeRange.style.background = `linear-gradient(to right, #e3e3e3 0%, #e3e3e3 ${volumeRange.value}%, rgb(135, 135, 135) ${volumeRange.value}%, rgb(135, 135, 135) 100%)`;
+            }else{
+                video.volume = 0;
+                setVolumeIcon();
+                volumeRange.value = 0;
+                volumeRange.style.background = `linear-gradient(to right, #e3e3e3 0%, #e3e3e3 ${volumeRange.value}%, rgb(135, 135, 135) ${volumeRange.value}%, rgb(135, 135, 135) 100%)`;
+            }
+            break;
+        case " ":
+            videoPlay();
+            break;
+        case "Enter":
+            fullscreenFunction(video);
+            break;
+    }
+});
+
+// fullscreen
+const fullscreenIcon = document.querySelector("#video-player-btn-fullscreen > i");
+fullscreenIcon.addEventListener("click", function(){
+    fullscreenFunction(video);
+});
+
+
+function fullscreenFunction(vid){
+    if (vid.requestFullscreen) {
+        vid.requestFullscreen();
+    } else if (vid.webkitRequestFullscreen) { /* Safari */
+        vid.webkitRequestFullscreen();
+    } else if (vid.msRequestFullscreen) { /* IE11 */
+        vid.msRequestFullscreen();
+    }
+}
+
+// settings
+const settingsBtn = document.querySelector("#setting-btn > i");
+const settingBoxContainer = document.getElementById("video-player-settings-box-container");
+const settingRows = document.getElementsByClassName("video-player-settings-row");
+const settingsQulaityContainer = document.getElementById("video-player-settings-qualities-container");
+const videoQualityRows = document.getElementsByClassName("video-player-settings-qualities-body-row");
+
+let isActiveSetting = false;
+settingsBtn.addEventListener("click", function(){
+    if(!isActiveSetting){
+        this.style.transform = "rotateZ(30deg)";
+        settingBoxContainer.style.display = "block";
+        isActiveSetting = true;
+    }else{
+        this.style.transform = "rotateZ(-30deg)";
+        settingBoxContainer.style.display = "none";
+        isActiveSetting = false;
+    }
+});
+
+settingRows[1].addEventListener("click", function(){
+    settingBoxContainer.style.display = "none";
+    settingsQulaityContainer.style.display = "block";
+});
+
+for(let row of videoQualityRows){
+    row.addEventListener("click", function(){
+        settingsQulaityContainer.style.display = "none";
+        let quality = this.querySelector(".video-player-settings-qualities-body-row-items");
+        changeQuality(quality.innerText.replace(/\D/g, ""))
+    });
+}
+
+function changeQuality(q){
+    let current = video.currentTime;
+    video.setAttribute("src", `./assets/test${q}.mp4`);
+    video.currentTime = current;
+    isActiveSetting = false;
+    settingsBtn.style.transform = "rotateZ(-30deg)";
+}

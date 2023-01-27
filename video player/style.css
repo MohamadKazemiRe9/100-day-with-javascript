@@ -75,7 +75,7 @@ i {
 #volume-container>input{
     appearance: none;
     height: 0.4em;
-    background: linear-gradient(to right, #e3e3e3 0%, #e3e3e3 40%, rgb(135, 135, 135) 40%, rgb(135, 135, 135) 100%);
+    background: linear-gradient(to right, #e3e3e3 0%, #e3e3e3 100%);
     outline: none;
     transition: opacity .2s;
     width: 90%;
