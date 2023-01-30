@@ -1,0 +1,36 @@
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post {
+  width: calc(33.33% - 20px); /* adjust width as needed */
+  margin: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+.post:hover {
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  transform: scale(1.05);
+}
+
+.post-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+
+.post-body {
+  font-size: 1em;
+  padding: 10px;
+}
+
+@media (max-width: 768px) { /* adjust breakpoint as needed */
+  .post {
+    width: 100%;
+  }
+}
