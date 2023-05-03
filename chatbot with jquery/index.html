@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <title>Chatbot</title>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="chat-container">
+      <div class="chat-header">
+        <h5>ChatGPT Bot</h5>
+      </div>
+      <div class="chat-body" id="chat-body">
+        <!-- Chat messages will be added here -->
+        <div class="bot-message message-text">Hello, How can I help you?</div>
+      </div>
+      <form id="chat-form" class="chat-footer">
+        <input type="text" id="user-input" class="form-control" placeholder="Type a message" required>
+        <button type="submit" class="btn btn-send">
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
