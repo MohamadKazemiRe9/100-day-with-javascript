@@ -15,13 +15,50 @@ $(document).ready(function(){
 
     // active slider paginator
     function activePageItem(counter){
-        $(".page-item").eq(counter).addClass("active");
-        if(counter==1){
-            $(".page-item").eq(slides.length).removeClass("active");
-        }else{
-            $(".page-item").eq(counter-1).removeClass("active");
+        let paginations = $(".page-item");
+        for (let slide of paginations) {
+            $(slide).removeClass("active");
         }
+        $(".page-item").eq(counter).addClass("active"); 
     }
+
+    // click on slider paginations
+    $(".page-link").click(function(){
+        // if we click on numbers
+        console.log(Number(this.text))
+        let text = this.text
+        if(isNaN(Number(text))){
+             // check is next or previous is in the text
+            if (text.toLowerCase().includes("next")) {
+                clearInterval(slideInterval)
+                slides.eq(currentSlide).fadeOut(1000);
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides.eq(currentSlide).fadeIn(1000);
+                activePageItem(currentSlide+1); // in curent slide we start from 1
+                startSlider();
+            } else {
+                clearInterval(slideInterval)
+                slides.eq(currentSlide).fadeOut(1000);
+                currentSlide = (currentSlide - 1) % slides.length;
+                if(currentSlide < 0){
+                    currentSlide = slides.length - 1;
+                }
+                console.log(currentSlide)
+                slides.eq(currentSlide).fadeIn(1000);
+                activePageItem(currentSlide+1); // in curent slide we start from 1
+                startSlider();
+            }
+        }
+        // or if we click on the next and prevoius
+        else{
+            clearInterval(slideInterval);
+            slides.eq(currentSlide).fadeOut(1000);
+            currentSlide = Number(text) - 1;
+            slides.eq(currentSlide).fadeIn(1000);
+            activePageItem(currentSlide+1); // in curent slide we start from 1
+            startSlider();
+        }
+    })
 
     function startSlider(){
         slideInterval = setInterval(()=>{
